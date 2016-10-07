@@ -1,3 +1,4 @@
+import requests
 from requests_oauthlib import OAuth2Session
 from flask import Flask, request, redirect, session, url_for
 from flask.json import jsonify
@@ -11,9 +12,9 @@ app = Flask(__name__)
 # This information is obtained upon registration of a new Application in WSO2 API Manager
 # You can add application from here: https://localhost:9443/store/site/pages/application-add.jag
 
-client_id = "kN6aHLmmI30UXtcwTCf1iAKaf5Ya"
-client_secret = "imTCjzNXrRZVpbq0Xlx3LWr8ewwa"
-scope = "sample_key"
+client_id = "kB9W2k3wJEofjIlUdnjoWjQ_P_Qa"
+client_secret = "OTSI4TQRBfSFfzbNdmEGaqg1eqUa"
+scope = "all"
 
 host = "localhost"
 port = 8243
@@ -60,16 +61,26 @@ def callback():
     # the token and show how this is done from a persisted token
     # in /profile.
     session['oauth_token'] = token
-    return redirect(url_for('.profile'))
+    return redirect(url_for('.consume_service'))
 
 
-@app.route("/profile", methods=["GET"])
-def profile():
+@app.route("/consume_service", methods=["GET"])
+def consume_service():
     """Fetching a protected resource using an OAuth 2 token.
     """
-    print("Done!")
-    print("Client access key is = {}".format(session['oauth_token']))
-    return jsonify("{{'done': True, 'access_token': {}}}".format(session['oauth_token']))
+    # print("Done!")
+    # print("Client access key is = {}".format(session['oauth_token']))
+    access_token = session['oauth_token']['access_token']
+    endpoint = "https://localhost:8243/t/knnect.com/ebill_new/1.0.0/ebill"
+    headers = {
+        "Authorization": "{type} {value}".format(type="Bearer", value=access_token)
+    }
+    applications = requests.get(endpoint, headers=headers, verify=False)
+    if not applications.ok:
+        message = "ERROR: Something went wrong: {}".format(applications.content)
+        print(message)
+        return jsonify("'Error': {}".format(message))
+    return jsonify(applications.json())
 
 
 if __name__ == "__main__":
