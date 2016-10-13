@@ -1,0 +1,22 @@
+{% load static %}
+<div style="height: 700px" class="card large">
+    <div class="card-image">
+        <h5 class="blue-text text-darken-2 center-align">
+            Authorization code received!
+        </h5>
+    </div>
+    <div style="margin-bottom: 10%;max-height: 100%;text-align: center" class="card-content">
+
+        <div class="chip">
+            <i class="material-icons small">vpn_key</i>
+            <span style="vertical-align: top;color: rgb(86, 123, 125); font-weight: bold;font-size: x-large;">{{ auth_token }}</span>
+        </div>
+
+    </div>
+    <form id="get_access_token" action="/oauth/access_token" method="post">
+        {% csrf_token %}
+    </form>
+    <div class="card-action">
+        <input type="submit" form="get_access_token" class="waves-effect waves-light btn" value="Get Access Token">
+    </div>
+</div>

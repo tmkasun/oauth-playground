@@ -22,7 +22,7 @@
     <div class="row">
         <div class="col m6">
             <div class="col s12 m12">
-                {% include 'home/partials/oauth_form.html' %}
+                {% include 'home/partials/oauth_form.html' with callback_url=callback_url %}
             </div>
         </div>
         <div class="col m6">
