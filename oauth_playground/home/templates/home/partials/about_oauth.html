@@ -2,13 +2,64 @@
 <div style="height: 100%" class="card large">
     <div class="card-image">
         <h5 class="blue-text text-darken-2 center-align">
-            Try it!
+            How it works!
         </h5>
     </div>
     <div style="margin-bottom: 10%" class="card-content">
-        {% include 'home/partials/basic_form.html' %}
+
+        <ul class="collapsible popout collapsible-accordion" data-collapsible="accordion">
+            <li class="active">
+                <div class="collapsible-header active"><i class="material-icons">subtitles</i>First</div>
+                <div class="collapsible-body" style="display: block;"><p>Lorem ipsum dolor sit amet, consectetur
+                    adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+                    veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem
+                    ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                    aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p></div>
+            </li>
+            <li class="">
+                <div class="collapsible-header"><i class="material-icons">games</i>Second</div>
+                <div class="collapsible-body" style="display: none;"><p>Lorem ipsum dolor sit amet, consectetur
+                    adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+                    veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p></div>
+            </li>
+            <li>
+                <div class="collapsible-header"><i class="material-icons">library_books</i>Third</div>
+                <div class="collapsible-body" style=""><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                    do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p></div>
+            </li>
+            <li>
+                <div class="collapsible-header"><i class="material-icons">library_books</i>Third</div>
+                <div class="collapsible-body" style=""><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                    do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p></div>
+            </li>
+            <li>
+                <div class="collapsible-header"><i class="material-icons">library_books</i>Third</div>
+                <div class="collapsible-body" style=""><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                    do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p></div>
+            </li>
+        </ul>
+
     </div>
     <div class="card-action">
-        <input form="submit_auth" class="btn waves-effect waves-teal" type="submit" value="submit">
+        
+        <!-- Modal Structure -->
+        <div id="modal1" class="modal modal-fixed-footer">
+            <div class="modal-content">
+                <h4>Modal Header</h4>
+                <p>A bunch of text</p>
+                <img src="{% static 'images/oauth_flow_diagram.png'  %}" style="width: 80%">
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Agree</a>
+            </div>
+        </div>
+
+        <button data-target="modal1" class="btn waves-effect waves-teal modal-trigger">More</button>
     </div>
 </div>

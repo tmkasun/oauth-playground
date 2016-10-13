@@ -1,7 +1,7 @@
 <form id="submit_auth" action="/apis/submit" method="post" class="col s12">
 
     <div class="row">
-        <div class="input-field col s6">
+        <div class="input-field col s12 m12">
             <select>
                 <option value="auth_code" selected>Authorization code</option>
                 <option value="client_cred">Client credentials</option>
@@ -11,7 +11,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="input-field col s6">
+        <div class="input-field col s12 m12">
             <input placeholder="https://localhost:9443/oauth2/authorize" id="auth_endpoint" type="text" class="validate"
                    autocomplete="off">
             <label for="auth_endpoint" class="active">Authorize Endpoint <i class="material-icons tiny"
@@ -19,21 +19,21 @@
         </div>
     </div>
     <div class="row">
-        <div class="input-field col s6">
+        <div class="input-field col s12 m12">
             <input id="scope" type="text" class="validate">
             <label for="scope">Scope <i class="material-icons tiny"
                                         style="color: cornflowerblue">info_outline</i></label>
         </div>
     </div>
     <div class="row">
-        <div class="input-field col s6">
+        <div class="input-field col s12 m12">
             <input id="client_id" type="text" class="validate">
             <label for="client_id">Client ID <i class="material-icons tiny"
                                                 style="color: cornflowerblue">info_outline</i></label>
         </div>
     </div>
     <div class="row">
-        <div class="input-field col s6">
+        <div class="input-field col s12 m12">
             <input style="color: rgb(86, 123, 125); font-weight: bold;" disabled=""
                    value="http://localhost:8000/oauth/callback" id="callback_url" type="text" class="validate">
             <label for="callback_url" class="active">

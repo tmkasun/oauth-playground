@@ -8,7 +8,29 @@
 <body>
 {% include 'home/partials/navigation.html' %}
 <div class="container">
-    {% include 'home/partials/oauth_form.html' %}
+    <div class="row">
+        <div class="col m12">
+            <h5 class="blue-text text-darken-2 center-align"><img class="center"
+                                                                  style="width: 4%;margin: auto;"
+                                                                  src="{% static 'images/oauth_logo.png' %}"/>
+                <p style="margin: 0px">
+                    Playground
+                </p>
+            </h5>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col m6">
+            <div class="col s12 m12">
+                {% include 'home/partials/oauth_form.html' %}
+            </div>
+        </div>
+        <div class="col m6">
+            <div class="col s12 m12">
+                {% include 'home/partials/about_oauth.html' %}
+            </div>
+        </div>
+    </div>
 </div>
 {% include 'home/partials/footer.html' %}
 
