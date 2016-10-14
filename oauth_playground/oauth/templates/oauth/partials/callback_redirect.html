@@ -1,22 +1,37 @@
 {% load static %}
-<div style="height: 700px" class="card large">
-    <div class="card-image">
-        <h5 class="blue-text text-darken-2 center-align">
-            Authorization code received!
-        </h5>
-    </div>
+<div style="height: 700px" class="">
     <div style="margin-bottom: 10%;max-height: 100%;text-align: center" class="card-content">
-
-        <div class="chip">
-            <i class="material-icons small">vpn_key</i>
-            <span style="vertical-align: top;color: rgb(86, 123, 125); font-weight: bold;font-size: x-large;">{{ auth_token }}</span>
-        </div>
+        {% if auth_token %}
+            <div class="card teal accent-3" style="width: 50%;margin-left: 25%;">
+                <div class="card-content white-text" style="height: 300px;">
+                    <span class="card-title blue-text">Authorization code received!</span>
+                    <div class="chip" style="width: 100%;">
+                        <i class="material-icons small left">vpn_key</i>
+                        <span class="truncate" style="vertical-align: top;color: rgb(86, 123, 125); font-weight: bold;font-size: x-large">{{ auth_token }}</span>
+                    </div>
+                </div>
+                <div class="card-action">
+                    <form id="get_access_token" action="/oauth/access_token" method="post">
+                        {% csrf_token %}
+                    </form>
+                    <input type="submit" form="get_access_token" class="waves-effect waves-light btn  light-blue accent-4"
+                           value="Get Access Token">
+                </div>
+            </div>
+        {% else %}
+            <div class="card deep-orange lighten-5" style="width: 50%;margin-left: 25%;">
+                <div class="card-content white-text" style="height: 300px;">
+                    <span class="card-title red-text">Error getting Authorization code!</span>
+                    <p class="black-text" style="margin-top: 10%">Authorization server has denied access to requested
+                        resource with your given Authorization code</p>
+                </div>
+                <div class="card-action">
+                    <a class="btn cyan darken-3 waves-effect" href="/">Home</a>
+                    <a class="btn red darken-2 waves-effect" href="#">Retry</a>
+                </div>
+            </div>
+        {% endif %}
 
     </div>
-    <form id="get_access_token" action="/oauth/access_token" method="post">
-        {% csrf_token %}
-    </form>
-    <div class="card-action">
-        <input type="submit" form="get_access_token" class="waves-effect waves-light btn" value="Get Access Token">
-    </div>
+
 </div>

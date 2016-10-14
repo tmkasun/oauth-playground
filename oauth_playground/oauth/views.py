@@ -12,7 +12,7 @@ port = 8243
 
 authorization_base_url = 'https://{}:{}/authorize'.format(host, port)
 token_url = 'https://{}:{}/token'.format(host, port)
-callback_url = "http://{}:5000/callback".format(host)
+
 import os
 os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1'
 

@@ -1,7 +1,7 @@
 <form id="submit_auth" action="/oauth/submit" method="post" class="col s12">
     {% csrf_token %}
     <div class="row">
-        <div class="input-field col s12 m12">
+        <div class="input-field col s11 m11">
             <select name="grant_type">
                 <option value="auth_code" selected>Authorization code</option>
                 <option value="client_cred">Client credentials</option>
@@ -11,38 +11,47 @@
         </div>
     </div>
     <div class="row">
-        <div class="input-field col s12 m12">
+        <div class="input-field col s11 m11">
             <input placeholder="https://localhost:9443/oauth2/authorize" id="auth_endpoint" name="auth_endpoint"
                    type="text" class="validate"
                    autocomplete="off">
-            <label for="auth_endpoint" class="active">Authorization Endpoint <i class="material-icons tiny"
-                                                                                style="color: cornflowerblue">info_outline</i></label>
+            <label for="auth_endpoint" class="active">Authorization Endpoint</label>
         </div>
+        <i class="material-icons tiny tooltipped modal-trigger" data-target="authorization_endpoint_info" data-position="left" data-delay="50"
+           data-tooltip="Where should I look for authorization"
+           style="color: cornflowerblue;cursor: pointer;">help_outline</i>
     </div>
     <div class="row">
-        <div class="input-field col s12 m12">
+        <div class="input-field col s11 m11">
             <input id="scope" name="scope" type="text" class="validate">
-            <label for="scope">Scope <i class="material-icons tiny"
-                                        style="color: cornflowerblue">info_outline</i></label>
+            <label for="scope">Scope</label>
         </div>
+        <i class="material-icons tiny tooltipped modal-trigger" data-target="scope_info" data-position="left" data-delay="50"
+           data-tooltip="What specific permission you want"
+           style="color: cornflowerblue;cursor: pointer;">help_outline</i>
     </div>
     <div class="row">
-        <div class="input-field col s12 m12">
+        <div class="input-field col s11 m11">
             <input id="client_id" name="client_id" type="text" class="validate">
-            <label for="client_id">Client ID <i class="material-icons tiny"
-                                                style="color: cornflowerblue">info_outline</i></label>
+            <label for="client_id">Client ID</label>
         </div>
+        <i class="material-icons tiny tooltipped modal-trigger" data-target="client_id_info" data-position="left" data-delay="50"
+           data-tooltip="Authorization server to identify who is requesting access"
+           style="color: cornflowerblue;cursor: pointer;">help_outline</i>
     </div>
     <div class="row">
-        <div class="input-field col s12 m12">
+        <div class="input-field col s11 m11">
             <input name="callback_url" value="http://localhost:8000/oauth/callback" type="hidden">
-            <input id="callback_url"  style="color: rgb(86, 123, 125); font-weight: bold;" disabled=""
+            <input id="callback_url" style="color: rgb(86, 123, 125); font-weight: bold;" disabled=""
                    value="{{ callback_url }}" type="text"
                    class="validate">
             <label for="callback_url" class="active">
-                Callback URL <i class="material-icons tiny"
-                                style="color: cornflowerblue;cursor: pointer;">info_outline</i></label>
+                Callback URL</label>
         </div>
+        <i class="material-icons tiny tooltipped modal-trigger" data-target="callback_info" data-position="left"
+           data-delay="50"
+           data-tooltip="Redirect to this location after user authorization"
+           style="color: cornflowerblue;cursor: pointer;">help_outline</i>
     </div>
 </form>
 <script>
@@ -51,5 +60,4 @@
     });
 </script>
 
-
-
+{% include 'home/partials/form_modals.html' %}
