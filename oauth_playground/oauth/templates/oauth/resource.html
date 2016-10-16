@@ -3,36 +3,34 @@
 <!DOCTYPE html>
 <html lang="en">
 
-{% include 'home/partials/header.html' %}
+{% include 'oauth/partials/header.html' %}
 
 <body>
-{% include 'home/partials/navigation.html' %}
+{% include 'oauth/partials/navigation.html' %}
 <div class="container">
     <div class="row">
         <div class="col m12">
             <h5 class="blue-text text-darken-2 center-align"><img class="center"
                                                                   style="width: 4%;margin: auto;"
                                                                   src="{% static 'images/oauth_logo.png' %}"/>
-                <p style="margin: 0px">
-                    Playground
-                </p>
             </h5>
         </div>
     </div>
     <div class="row">
-        <div class="col m6">
+        <div class="col m12">
             <div class="col s12 m12">
-                {% include 'home/partials/oauth_form.html'%}
-            </div>
-        </div>
-        <div class="col m6">
-            <div class="col s12 m12">
-                {% include 'home/partials/about_oauth.html'%}
+                {% if user_role == 'wso2_user' %}
+                    {% include 'oauth/partials/wso2_resource_view.html' %}
+                {% elif user_role == 'facebook_user' %}
+                    {% include 'oauth/partials/facebook_resource_view.html' %}
+                {% else %}
+                    {% include 'oauth/partials/resource_view.html' %}
+                {% endif %}
             </div>
         </div>
     </div>
 </div>
-{% include 'home/partials/footer.html' %}
+{% include 'oauth/partials/footer.html' %}
 
 </body>
 </html>

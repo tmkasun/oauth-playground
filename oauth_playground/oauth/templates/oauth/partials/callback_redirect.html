@@ -7,14 +7,29 @@
                     <span class="card-title blue-text">Authorization code received!</span>
                     <div class="chip" style="width: 100%;">
                         <i class="material-icons small left">vpn_key</i>
-                        <span class="truncate" style="vertical-align: top;color: rgb(86, 123, 125); font-weight: bold;font-size: x-large">{{ auth_token }}</span>
+                        <span class="truncate"
+                              style="vertical-align: top;color: rgb(86, 123, 125); font-weight: bold;font-size: x-large">{{ auth_token }}</span>
+                    </div>
+
+                    <div class="row">
+                        <form id="get_access_token" action="/oauth/access_token" method="post">
+                            {% csrf_token %}
+                            <div class="input-field col s11 m11">
+                                {% if user_role != 'dev_user' %}
+                                    <input id="client_secret" name="client_secret" type="password" value="CAN'T SEE ME"
+                                           class="validate">
+                                {% else %}
+                                    <input id="client_secret" name="client_secret" type="text" class="validate">
+                                {% endif %}
+                                <label style="text-align: left;color: brown; font-weight: bold;" for="client_secret"
+                                       class="active">Client secret</label>
+                            </div>
+                        </form>
                     </div>
                 </div>
                 <div class="card-action">
-                    <form id="get_access_token" action="/oauth/access_token" method="post">
-                        {% csrf_token %}
-                    </form>
-                    <input type="submit" form="get_access_token" class="waves-effect waves-light btn  light-blue accent-4"
+                    <input type="submit" form="get_access_token"
+                           class="waves-effect waves-light btn  light-blue accent-4"
                            value="Get Access Token">
                 </div>
             </div>

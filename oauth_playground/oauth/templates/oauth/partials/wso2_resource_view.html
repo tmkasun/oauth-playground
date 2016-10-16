@@ -1,0 +1,15 @@
+{% load static %}
+<div style="height: 700px" class="">
+    <div style="margin-bottom: 10%;max-height: 100%;text-align: center" class="card-content">
+        <div class="card large teal accent-3" style="width: 50%;margin-left: 25%;">
+            <div class="card-content white-text" style="height: 100%;">
+                <span class="card-title blue-text">Hello <b>{{ data.full_name }}</b></span>
+                <img style="margin-left: 30%" class="materialboxed" data-caption="{{ data.full_name }} Profile Picture" width="250"
+                     src="{{ data.profile_picture }}">
+            </div>
+            <div class="card-action">
+                <a class="waves-effect waves-light btn  light-blue accent-4" href="/">Done!</a>
+            </div>
+        </div>
+    </div>
+</div>

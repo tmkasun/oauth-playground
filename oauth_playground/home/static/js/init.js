@@ -1,28 +1,35 @@
-var fullLineData;
 (function ($) {
     $(function () {
-
-        $('.button-collapse').sideNav();
-        $('.modal-trigger').leanModal({
-            ready: function () {
-                drawCallDistro('call-distro-full');
-            }
-        });
-        drawCallDistro('call-distro-mini');
+        init_role_selection();
+        $('.modal-trigger').leanModal();
     }); // end of document ready
 })(jQuery); // end of jQuery name space
 
-function drawCallDistro(element) {
-    var element_id = '#'+element;
-    $(element_id).empty();
-    Morris.Line({
-        element: element,
-        data: fullLineData,
-        xkey: 'y',
-        ykeys: ['a'],
-        xLabels: "day",
-        axes: true,
-        resize: true,
-        labels: ['# Calls']
+
+function init_role_selection() {
+    var auth_input = $('#auth_endpoint');
+    var scope = $('#scope');
+    var client_id = $('#client_id');
+
+    function post_init(){
+        $('#client_id').replaceWith('<input id="client_id" name="client_id" type="password">');
+        client_id = $('#client_id');
+        client_id.focusin();
+        client_id.val("CAN'T SEE THIS AS A USER");
+        scope.focusin();
+    }
+
+    $("#wso2_user").change(function () {
+        var auth_url = $('#wso2_auth_url').val();
+        auth_input.val(auth_url);
+        scope.val("demo_read");
+        post_init();
+    });
+
+    $("#facebook_user").change(function () {
+        var auth_url = $('#facebook_auth_url').val();
+        auth_input.val(auth_url);
+        scope.val("public_profile");
+        post_init();
     });
 }

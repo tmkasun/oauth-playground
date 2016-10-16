@@ -1,62 +1,75 @@
 {% load static %}
-<div style="height: 700px" class="card large">
+<div style="height: 700px" class="card large ">
     <div class="card-image">
         <h5 class="blue-text text-darken-2 center-align">
-            How it works!
+            Choose your role!
         </h5>
     </div>
     <div style="margin-bottom: 10%;max-height: 100%" class="card-content">
 
         <ul class="collapsible popout collapsible-accordion" data-collapsible="accordion">
             <li class="active">
-                <div class="collapsible-header active"><i class="material-icons">subtitles</i>First</div>
-                <div class="collapsible-body" style="display: block;"><p>Lorem ipsum dolor sit amet, consectetur
-                    adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-                    veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem
-                    ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                    aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p></div>
+                <div class="collapsible-header active"><i class="material-icons">person</i>As a User</div>
+                <div class="collapsible-body" style="display: block;">
+                    <p>
+                        You can experience the flow of OAuth 2 authorization by selecting either of the product listed
+                        below.
+                        You don't want to have any keys, tokens ect.
+                        <br>
+                        In this scenario you will consider as <b>Resource Owner</b>, Where you will authorize this
+                        application (OAuth playground)
+                        to request to protected resource of you from the <b>Resource Server</b>(Either Facebook or WSO2
+                        APIM) through your browser <b>Client</b>.
+                        During the process OAuth playground application will send multiple authorization request to your
+                        <b>Authorization Server</b> based on the selection below.
+                    </p>
+                    <p>
+                        <input form="submit_auth" name="user_role" value="wso2_user" type="radio" id="wso2_user"/>
+                        <label for="wso2_user">WSO2 API Manager</label>
+
+                        <input type="hidden" readonly disabled id="facebook_auth_url" value="{{ facebook_auth_url }}"/>
+                    </p>
+                    <p>
+                        <input form="submit_auth" name="user_role" value="facebook_user" type="radio"
+                               id="facebook_user"/>
+                        <label for="facebook_user">Facebook</label>
+
+
+                        <input type="hidden" readonly disabled id="wso2_auth_url" value="{{ wso2_auth_url }}"/>
+                    </p>
+
+                </div>
             </li>
             <li class="">
-                <div class="collapsible-header"><i class="material-icons">games</i>Second</div>
-                <div class="collapsible-body" style="display: none;"><p>Lorem ipsum dolor sit amet, consectetur
-                    adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-                    veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p></div>
-            </li>
-            <li>
-                <div class="collapsible-header"><i class="material-icons">library_books</i>Third</div>
-                <div class="collapsible-body" style=""><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p></div>
-            </li>
-            <li>
-                <div class="collapsible-header"><i class="material-icons">library_books</i>Third</div>
-                <div class="collapsible-body" style=""><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p></div>
-            </li>
-            <li>
-                <div class="collapsible-header"><i class="material-icons">library_books</i>Third</div>
-                <div class="collapsible-body" style=""><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p></div>
+                <input style="display: none" form="submit_auth" name="user_role" value="dev_user" type="radio"
+                       id="dev_user" checked/>
+
+                <div class="collapsible-header"><i class="material-icons">developer_mode</i>As a Developer</div>
+                <div class="collapsible-body" style="display: none;">
+                    <p>
+                        You can try the playgroun app as a developer as well.You need fill all the required fields in
+                        order to try the app.
+                        If you are running this application in your local setup, You can refer to console logs for
+                        information about sensitive data , such as <b>Client Secret</b> <b>Access Token</b> and <b>Authorization
+                        Code</b> and etc..
+                        You can change the log level from
+                    <div class="card-panel grey lighten-2" style="margin: 0px;padding: 0px"><pre>&lt;APP_HOME&gt;/web_app/oauth_playground/settings.py</pre> </div>file.
+                    </p>
+                </div>
             </li>
         </ul>
 
     </div>
     <div class="card-action">
-        
         <!-- Modal Structure -->
         <div id="modal1" class="modal modal-fixed-footer">
             <div class="modal-content">
                 <h4>Modal Header</h4>
                 <p>A bunch of text</p>
-                <img src="{% static 'images/oauth_flow_diagram.png'  %}" style="width: 80%">
+                <img src="{% static 'images/oauth_flow_diagram.png' %}" style="width: 80%">
             </div>
             <div class="modal-footer">
-                <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Agree</a>
+                <a href="#" class="modal-action modal-close waves-effect waves-green btn-flat ">Agree</a>
             </div>
         </div>
 

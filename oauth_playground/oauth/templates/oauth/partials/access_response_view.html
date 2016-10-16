@@ -1,0 +1,78 @@
+{% load static %}
+<style>
+    pre {
+        outline: 1px solid #ccc;
+        padding: 5px;
+        margin: 5px;
+    }
+
+    .string {
+        color: green;
+    }
+
+    .number {
+        color: darkorange;
+    }
+
+    .boolean {
+        color: blue;
+    }
+
+    .null {
+        color: magenta;
+    }
+
+    .key {
+        color: red;
+    }
+</style>
+<div style="height: 700px" class="">
+    <div style="margin-bottom: 10%;max-height: 100%;text-align: center" class="card-content">
+        <div class="card teal accent-3" style="width: 50%;margin-left: 25%;">
+            <div class="card-content white-text" style="height: 300px;">
+                <span class="card-title blue-text">Access token received!</span>
+                    <pre id="access_token" style="text-align: left;">
+                    </pre>
+            </div>
+            <div class="card-action">
+                <form id="request_resource" action="/oauth/request_resource" method="post">
+                    {% csrf_token %}
+                </form>
+                <input type="submit" form="request_resource"
+                       class="waves-effect waves-light btn  light-blue accent-4"
+                       value="Request Resource">
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    {% autoescape off %}
+    var token = {{ access_token }};
+    {% endautoescape %}
+    function output(inp) {
+        //document.body.appendChild(document.createElement('pre')).innerHTML = inp;
+        $('#access_token').html(inp);
+    }
+
+    function syntaxHighlight(json) {
+        json = json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function (match) {
+            var cls = 'number';
+            if (/^"/.test(match)) {
+                if (/:$/.test(match)) {
+                    cls = 'key';
+                } else {
+                    cls = 'string';
+                }
+            } else if (/true|false/.test(match)) {
+                cls = 'boolean';
+            } else if (/null/.test(match)) {
+                cls = 'null';
+            }
+            return '<span class="' + cls + '">' + match + '</span>';
+        });
+    }
+
+    var str = JSON.stringify(token, undefined, 4);
+    output(syntaxHighlight(str));
+</script>
