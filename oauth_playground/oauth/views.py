@@ -65,14 +65,17 @@ def submit(request):
     request.session['oauth_callback_url'] = callback_url
     request.session['oauth_client_secret'] = client_secret
     request.session['oauth_token_endpoint'] = token_endpoint
+    request.session['oauth_scope'] = scope
 
     logger.info("Redirecting user to : {}".format(auth_endpoint))
     logger.debug("Sessions saved for\n"
+                 "oauth_scope : {}\n"
                  "oauth_state : {}\n"
                  "oauth_client_id : {}\n"
                  "oauth_callback_url : {}\n"
                  "oauth_client_secret : {}\n"
-                 "oauth_token_endpoint : {}".format(state, client_id, callback_url, client_secret, token_endpoint))
+                 "oauth_token_endpoint : {}".format(scope, state, client_id, callback_url, client_secret,
+                                                    token_endpoint))
     return redirect(authorization_url)
 
 
@@ -97,8 +100,9 @@ def request_access_token(request):
     client_secret = request.session['oauth_client_secret']
     callback_url = request.session['oauth_callback_url']
     token_endpoint = request.session['oauth_token_endpoint']
+    scope = request.session['oauth_scope']
 
-    wso2_apim = OAuth2Session(client_id, state=request.session['oauth_state'], redirect_uri=callback_url)
+    wso2_apim = OAuth2Session(client_id, state=request.session['oauth_state'], redirect_uri=callback_url, scope=scope)
     token = wso2_apim.fetch_token(token_endpoint, client_secret=client_secret,
                                   authorization_response=auth_response, verify=False)  # verify=False Because we don't
     # have trusted certificate in the server(Only for demo)
@@ -127,7 +131,20 @@ def request_resource(request):
 
 
 def _get_wso2_resource(token):
-    pass
+    access_token = token['access_token']
+    wso2_conf = Configs.wso2
+    wso2_api = wso2_conf['resource_endpoint']
+    context = '/book'
+    resource = {}
+    headers = {
+        'Authorization': 'Bearer {}'.format(access_token),
+        'Accept': 'application/json'
+    }
+    request_url = wso2_api + context
+    response = requests.get(request_url, headers=headers, verify=False)
+    if response.ok:
+        resource['books'] = response.json()
+    return resource
 
 
 def _get_facebook_resource(token):

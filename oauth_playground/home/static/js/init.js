@@ -11,7 +11,7 @@ function init_role_selection() {
     var scope = $('#scope');
     var client_id = $('#client_id');
 
-    function post_init(){
+    function post_init() {
         $('#client_id').replaceWith('<input id="client_id" name="client_id" type="password">');
         client_id = $('#client_id');
         client_id.focusin();
@@ -22,14 +22,14 @@ function init_role_selection() {
     $("#wso2_user").change(function () {
         var auth_url = $('#wso2_auth_url').val();
         auth_input.val(auth_url);
-        scope.val("demo_read");
+        scope.val($('#wso2_scope').val());
         post_init();
     });
 
     $("#facebook_user").change(function () {
         var auth_url = $('#facebook_auth_url').val();
         auth_input.val(auth_url);
-        scope.val("public_profile");
+        scope.val($('#facebook_scope').val());
         post_init();
     });
 }

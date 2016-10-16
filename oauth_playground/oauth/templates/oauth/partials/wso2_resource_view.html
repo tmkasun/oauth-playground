@@ -3,9 +3,8 @@
     <div style="margin-bottom: 10%;max-height: 100%;text-align: center" class="card-content">
         <div class="card large teal accent-3" style="width: 50%;margin-left: 25%;">
             <div class="card-content white-text" style="height: 100%;">
-                <span class="card-title blue-text">Hello <b>{{ data.full_name }}</b></span>
-                <img style="margin-left: 30%" class="materialboxed" data-caption="{{ data.full_name }} Profile Picture" width="250"
-                     src="{{ data.profile_picture }}">
+                <span class="card-title blue-text">List of Books from BookStore API</span>
+                <pre id="resources_panel" style="text-align: left;overflow-y: scroll;height: 70%;"></pre>
             </div>
             <div class="card-action">
                 <a class="waves-effect waves-light btn  light-blue accent-4" href="/">Done!</a>
@@ -13,3 +12,11 @@
         </div>
     </div>
 </div>
+<script src='{% static "js/json_highlighter.js" %}'></script>
+<script>
+    {% autoescape off %}
+    var token = {{ data.books }};
+    {% endautoescape %}
+    var str = JSON.stringify(token, undefined, 4);
+    output(syntaxHighlight(str), $('#resources_panel'));
+</script>

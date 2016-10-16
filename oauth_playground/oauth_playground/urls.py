@@ -21,4 +21,5 @@ urlpatterns = [
     url(r'^$', include('home.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^oauth/', include('oauth.urls')),
+    url(r'^apis/', include('mock_api.urls')),
 ]

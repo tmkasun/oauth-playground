@@ -25,7 +25,7 @@ DEBUG = True
 
 LOGGING = {
     'version': 1,
-    'disable_existing_loggers': True,
+    'disable_existing_loggers': False,
     'formatters': {
         'standard': {
             'format': '%(asctime)s [%(levelname)s] %(name)s.%(funcName)s: %(message)s'
@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'home',
     'oauth',
+    'mock_api',
 ]
 
 MIDDLEWARE = [

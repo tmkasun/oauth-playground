@@ -12,7 +12,8 @@ class Configs(object):
         'token_endpoint': "https://localhost:8243/token",
         'client_id': 'fMl9fqQu3GF5rGfcSeGhqX8PB00a',  # Consumer Key
         'client_secret': 'vGk7XPnf0tLM8gfihT_YLQQO9c4a',  # Consumer Secret
-        'scope': 'get_book'
+        'scope': 'demo_read',
+        'resource_endpoint': 'https://localhost:8243/t/bookstore.com/bookstore/1.0.0'
     }
     commons = {
         'callback': {
