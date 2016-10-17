@@ -1,5 +1,7 @@
 # tmkasun additional file/dir ignore
 oauth_playground/production_static/
+oauth_playground/db.sqlite3
+
 # Idea cofigs
 .idea/
 # Byte-compiled / optimized / DLL files
