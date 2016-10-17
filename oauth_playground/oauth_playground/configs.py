@@ -16,22 +16,9 @@ class Configs(object):
         'resource_endpoint': 'https://localhost:8243/t/bookstore.com/bookstore/1.0.0'
     }
     commons = {
-        'callback': {
-            'host': 'localhost',
-            'port': '8000',
-            'ssl': False,
-            'context': '/oauth/callback/'
-        }
+        'callback_url': 'http://localhost:8000/oauth/callback/'
     }
 
     @staticmethod
     def get_callback_url():
-        return Configs._protocol(
-                Configs.commons['callback']['ssl']) + "://" \
-               + Configs.commons['callback']['host'] + ":" \
-               + Configs.commons['callback']['port'] \
-               + Configs.commons['callback']['context']
-
-    @staticmethod
-    def _protocol(ssl=False):
-        return 'https' if ssl else 'http'
+        return Configs.commons['callback_url']
