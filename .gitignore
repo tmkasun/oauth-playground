@@ -1,3 +1,5 @@
+# tmkasun additional file/dir ignore
+oauth_playground/production_static/
 # Idea cofigs
 .idea/
 # Byte-compiled / optimized / DLL files
