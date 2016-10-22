@@ -1,10 +1,49 @@
 (function ($) {
     $(function () {
         init_role_selection();
+        init_pre_submit_messages();
+        alert("oks");
         $('.modal-trigger').leanModal();
     }); // end of document ready
 })(jQuery); // end of jQuery name space
 
+function init_pre_submit_messages() {
+    $('#try_step_one').leanModal({
+        ready: function () {
+            $('#selected_auth_endpoint').html($('#auth_endpoint').val());
+            modal_closed = false;
+            var calls = function () {
+                $('#submit_auth').submit();
+            };
+            var seconds = 25,
+                display = $('.pre_info_timer');
+            _startTimer(seconds, display, calls);
+        },
+        complete: function () {
+            modal_closed = true;
+        }
+    });
+}
+var modal_closed = true;
+function _startTimer(duration, display, callback) {
+    var timer = duration, minutes, seconds;
+    var loop = setInterval(function () {
+        minutes = parseInt(timer / 60, 10);
+        seconds = parseInt(timer % 60, 10);
+
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        display.text(minutes + ":" + seconds);
+        var timeout = --timer < 0;
+        if (timeout && !modal_closed) {
+            callback();
+            clearInterval(loop);
+        } else if (timeout) {
+            clearInterval(loop);
+        }
+    }, 1000);
+}
 
 function init_role_selection() {
     var auth_input = $('#auth_endpoint');

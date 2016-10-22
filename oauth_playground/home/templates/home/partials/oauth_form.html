@@ -7,8 +7,9 @@
     </div>
     <div style="margin-bottom: 10%;max-height: 100%" class="card-content">
         {% include 'home/partials/basic_form.html' %}
+        {% include 'home/partials/pre_submit_alearts.html' %}
     </div>
     <div class="card-action">
-        <input form="submit_auth" class="btn waves-effect waves-teal" type="submit" value="Try">
+        <button id="try_step_one" class="btn waves-effect waves-teal modal-trigger" data-target="try_info">Try</button>
     </div>
 </div>
