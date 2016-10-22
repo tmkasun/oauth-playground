@@ -2,7 +2,6 @@
     $(function () {
         init_role_selection();
         init_pre_submit_messages();
-        alert("oks");
         $('.modal-trigger').leanModal();
     }); // end of document ready
 })(jQuery); // end of jQuery name space
