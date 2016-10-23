@@ -20,7 +20,9 @@ You can use this playground application to try out the application developer exp
 For example: If you want to consume an API which is managed by WSO2 APIM and to build an application. You can try out how to grant role based permissions to only allow specific users to access particular API
 * Download the latest API Manager (APIM) pack from [wso2](http://wso2.com/products/api-manager/)
 * Unzip , [run](https://docs.wso2.com/display/AM200/Running+the+Product) and login to APIM Publisher
-* Create 
+* Create an API , and an application
+* Use the generated Consumer keys and Consumer Secrete to try out the playground application
+* You can use the API Console tool to try out the api invocation and get sample results. 
 
 ## Reference :
 * [requests-oauthlib](http://requests-oauthlib.readthedocs.io/en/latest/examples/real_world_example.html)
